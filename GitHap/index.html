@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЦПА — Canary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Manrope:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f6f3ee;
+            --accent-gold: #bfa071;
+            --accent-dark: #3d3d3d;
+            --white: #ffffff;
+            --shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px 0 40px 0;
+            font-family: 'Manrope', sans-serif;
+            color: var(--accent-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .slide-container {
+            background-color: var(--white);
+            width: 100%;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #e0d9c5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 40px 25px;
+            box-shadow: var(--shadow);
+            border-radius: 12px;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; margin: 0; }
+        
+        .greeting-script {
+            font-family: 'Marck Script', cursive;
+            font-size: 36px;
+            color: var(--accent-gold);
+            margin-bottom: 10px;
+        }
+
+        .slide-title {
+            font-size: 38px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        p { font-size: 16px; line-height: 1.6; color: #555; }
+
+        .logo-main {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            margin: 0 auto 20px auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .order-btn {
+            display: block;
+            text-align: center;
+            background-color: var(--accent-dark);
+            color: var(--bg-color) !important;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 14px 25px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            border: 1px solid var(--accent-dark);
+        }
+
+        .order-btn:hover {
+            background-color: transparent;
+            color: var(--accent-dark) !important;
+        }
+
+        .price-tag {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #cda256;
+            margin: 10px 0;
+        }
+
+        .services-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .service-card {
+            background: #fffcf7;
+            border: 1px solid #f0e6d6;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .table-wrapper { overflow-x: auto; width: 100%; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 15px 10px; text-align: left; border-bottom: 1px solid #f0e6d6; font-size: 15px; }
+        th { font-family: 'Playfair Display'; text-transform: uppercase; color: #888; font-size: 13px; }
+
+        /* Стиль для важного уведомления (дисклеймера) */
+        .disclaimer-block {
+            background-color: #fffcf7;
+            border-left: 3px solid #dcd1ba;
+            padding: 20px 25px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: var(--shadow);
+        }
+
+        .disclaimer-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #777;
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* Мелкое примечание под таблицей */
+        .table-note {
+            font-size: 13px;
+            line-height: 1.4;
+            color: #888;
+            margin-top: 20px;
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* Стиль для выделенной ссылки на Тильду внизу */
+        .tilda-block {
+            text-align: center;
+            margin-top: 10px;
+            padding: 25px 20px;
+            background-color: #fffcf7;
+            border: 1px dashed var(--accent-gold);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .tilda-btn {
+            display: inline-block;
+            background-color: var(--accent-gold);
+            color: #ffffff !important;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            padding: 15px 35px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(191, 160, 113, 0.2);
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .tilda-btn:hover {
+            background-color: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
+<body>
+
+<div class="slide-container" id="slide1">
+    <div style="text-align: center;">
+        <img src="https://raw.githubusercontent.com/mjr9c95gpr-cmyk/-/main/IMG_1378.PNG" alt="Canary Logo" class="logo-main">
+        <p class="greeting-script">Добро пожаловать !</p>
+        <h1 class="slide-title">Мои услуги</h1>
+        <p>Пространство для тех, кто выбирает глубокое самопознание и осознанность.</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide2" style="background-color: #cad0c2; border: none;">
+    <div style="text-align: center; color: #4a4a4a;">
+        <h2 style="font-size: 42px; margin-bottom: 10px;">Путь к себе начинается здесь</h2>
+        <p style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 22px; color: #a3814f;">Эстетика. Осознанность. Гармония.</p>
+        <p>Глубокий анализ себя, своих жизненных циклов и внутреннего потенциала через Цифровую Психологию, Систему И-Цзин (Книгу перемен) и символический язык чисел.</p>
+    </div>
+</div>
+
+<div class="disclaimer-block">
+    <p class="disclaimer-text">💡 Материалы и консультации не являются психологической, психотерапевтической или медицинской помощью.</p>
+</div>
+
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">Экспресс-услуги</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <h4>Благоприятные даты и числа </h4>
+            <p style="font-size: 14px; margin: 5px 0;">Подбор лучшего времени для одного события, номер телефона, номер квартиры и др.</p>
+            <div class="price-tag">2 500 ₽</div>
+             <div class="svc-gift">
+          <span class="svc-gift-icon">🎁</span>
+          <span class="svc-gift-text">В конце встречи вас ждёт подарок.</span>
+        </div>
+            <a href="https://t.me/sun_canary?text=Хочу%20Подбор%20дат" class="order-btn">Заказать</a>
+        </div>
+        <div class="service-card">
+            <h4>Совместимость для двоих</h4>
+            <p style="font-size: 14px; margin: 5px 0;">Краткий разбор (30-60 мин)</p>
+            <div class="price-tag">4 000 ₽</div>
+             <div class="svc-gift">
+          <span class="svc-gift-icon">🎁</span>
+          <span class="svc-gift-text">В конце встречи вас ждёт подарок.</span>
+        </div>
+            <a href="https://t.me/sun_canary?text=Хочу%20разбор%20Совместимости" class="order-btn">Заказать</a>
+        </div>
+         <div class="service-card">
+            <h4>Разбор вашей матрицы</h4>
+            <p style="font-size: 14px; margin: 5px 0;">Краткий разбор на 2 любые сферы жизни (30-60 мин)</p>
+            <div class="price-tag">5 000 ₽</div>
+              <div class="svc-gift">
+          <span class="svc-gift-icon">🎁</span>
+          <span class="svc-gift-text">В конце встречи вас ждёт подарок.</span>
+        </div>
+            <a href="https://t.me/sun_canary?text=Хочу%20разбор%20Совместимости" class="order-btn">Заказать</a>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide4">
+    <div style="border-left: 4px solid var(--accent-gold); padding-left: 20px;">
+        <p class="greeting-script" style="font-size: 28px;">Индивидуально</p>
+        <h3 style="font-size: 24px; margin-bottom: 15px;">«МОЙ ЖИЗНЕННЫЙ ПЕРИОД»</h3>
+        <p>Помогу понять: какой этап вы проходите и на чем важно сосредоточиться.</p>
+        <div class="price-tag">5 000 ( без прогноза ) > 7 500 ₽ ( с прогнозом на 1 год вперед ) ₽ </div>
+         <div class="svc-gift">
+          <span class="svc-gift-icon">🎁</span>
+          <span class="svc-gift-text">В конце встречи вас ждёт подарок.</span>
+        </div>
+        <a href="https://t.me/sun_canary?text=Интересует%20диагностика%20периода" class="order-btn">Записаться на консультацию</a>
+    </div>
+</div>
+
+<div class="slide-container" id="slide4_2">
+    <div style="border-left: 4px solid var(--accent-gold); padding-left: 20px;">
+        <p class="greeting-script" style="font-size: 28px;">Индивидуально</p>
+        <h3 style="font-size: 24px; margin-bottom: 15px;">«МОЁ ПРЕДНАЗНАЧЕНИЕ»</h3>
+        <p>Помогу понять в какой сфере лучше реализовываться, где скрыт потенциал, сильные и слабые стороны.</p>
+        <div class="price-tag"> 7 000 ₽ </div>
+         <div class="svc-gift">
+          <span class="svc-gift-icon">🎁</span>
+          <span class="svc-gift-text">В конце встречи вас ждёт подарок.</span>
+        </div>
+        <a href="https://t.me/sun_canary?text=Интересует%20диагностика%20периода" class="order-btn">Записаться на консультацию</a>
+    </div>
+</div>
+
+<div class="slide-container" id="slide5">
+    <h2 class="slide-title">Отношения и Союзы</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <h4 style="color: var(--accent-gold);">Для 2 человек</h4>
+            <p style="font-size: 14px;">Глубокий разбор отношений и совместимости в паре. </p>
+            <div class="price-tag">10 000 ₽</div>
+             <div class="svc-gift">
+          <span class="svc-gift-icon">🎁</span>
+          <span class="svc-gift-text">В конце встречи вас ждёт подарок.</span>
+        </div>
+            <a href="https://t.me/sun_canary?text=Разбор%20для%20двоих" class="order-btn">Записаться на консультацию</a>
+        </div>
+        <div class="service-card">
+            <h4 style="color: var(--accent-gold);">Коллективы 3 и более человек</h4>
+            <p style="font-size: 14px;">Совместимость и анализ любых коллективов от 3х человек (Семейные/Рабочие).</p>
+            <div class="price-tag">от 15 000 ₽</div>
+            <a href="https://t.me/sun_canary?text=Разбор%20коллектива" class="order-btn">Записаться на консультацию</a>
+        </div>
+    </div>
+</div>
+       
+<div class="slide-container" id="slide6">
+    <h2 class="slide-title">Сводный Прайс-Лист</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Услуга</th>
+                    <th>Формат</th>
+                    <th>Стоимость</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Благоприятные даты и числа</td><td>Оnline</td><td>2 500 ₽</td></tr>
+                <tr><td>Экспресс совместимость для двоих</td><td>Оnline 30–60 мин</td><td>4 000 ₽</td></tr>
+                <tr><td>Экспресс разбор матрицы</td><td>Оnline 30-60 мин</td><td>5 000 ₽</td></tr>
+                <tr><td>Мой жизненный период</td><td>Оnline 60–180 мин</td><td>5 000/7 500 ₽</td></tr>
+                <tr><td>Моё предназначение</td><td>Оnline 60-180 мин</td><td>7 000 ₽</td></tr>
+                <tr><td>Для 2 человек</td><td>Оnline 60-180 мин</td><td>10 000 ₽</td></tr>
+                <tr><td>Коллективы 3 и более человек Семейные / Рабочие</td><td>Оnline 30-60 мин</td><td>от 15 000 ₽</td></tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="table-note">
+        * Материалы и консультации не являются психологической, психотерапевтической или медицинской помощью.
+    </div>
+
+    <div style="text-align: center; margin-top: 25px;">
+        <p style="font-family: 'Marck Script'; font-size: 24px; color: var(--accent-gold);">До встречи в пространстве самопознания !</p>
+    </div>
+</div>
+
+<div class="tilda-block">
+    <p style="margin: 0 0 10px 0; font-weight: 600; font-size: 15px; text-transform: uppercase; letter-spacing: 0.8px;">Дополнительная информация обо мне и моих услугах:</p>
+    <a href="https://digitalpsychoanalysis.tilda.ws" target="_blank" class="tilda-btn">Перейти на Tilda</a>
+</div>
+
+</body>
+</html>
